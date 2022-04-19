@@ -287,7 +287,14 @@ class Mod extends shapez.Mod {
 		})
 
 		this.signals.gameDeserialized.add(((gameData, saveData) => {
-			gameData.buyChunksData.deserialize(saveData.modExtraData.buyChunksData),
+			if(saveData.modExtraData['buy-land-data'] && saveData.modExtraData['buy-land-data'].ownedChunks) {
+				saveData.modExtraData.buyChunksData = saveData.modExtraData.buyChunksData || {}
+				saveData.modExtraData.buyChunksData.ownedChunks = saveData.modExtraData.buyChunksData.ownedChunks || []
+
+				saveData.modExtraData['buy-land-data'].ownedChunks.map(xy=>saveData.modExtraData.buyChunksData.ownedChunks.push(xy[0] + ' ' + xy[1]))
+			}
+
+			gameData.buyChunksData.deserialize(saveData.modExtraData.buyChunksData)
 			gameData.buyChunksData.root = gameData
 		}))
 
