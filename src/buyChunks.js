@@ -1,14 +1,17 @@
 const METADATA = {
 	id: "buyChunks",
-	version: "1.0.0",
+	version: "1.0.1",
 	minimumGameVersion: ">=1.5.0",
 
 	name: "Buy Chunks",
 	description: "Need to buy chunks before to build on them.",
-	website: "https://github.com/NatNgs/shapez-mods", // "https://github.com/NatNgs/...",
+	website: "https://github.com/NatNgs/shapez-mods",
 	author: "NatNgs",
 	settings: {},
 	doesNotAffectSavegame: false,
+
+	// SkUpdate
+	modId: '1992302',
 }
 
 class BuyChunksHUD extends shapez.BaseHUDPart {
