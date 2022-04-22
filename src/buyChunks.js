@@ -1,6 +1,6 @@
 const METADATA = {
 	id: "buyChunks",
-	version: "1.0.1",
+	version: "1.0.2",
 	minimumGameVersion: ">=1.5.0",
 
 	name: "Buy Chunks",
@@ -307,7 +307,10 @@ class Mod extends shapez.Mod {
 			}
 
 			if(!this.root.buyChunksData.isTileOwned(tileBounds.x, tileBounds.y)
-				|| !this.root.buyChunksData.isTileOwned(tileBounds.x + tileBounds.w -1, tileBounds.y + tileBounds.h -1))
+				|| (tileBounds.w + tileBounds.h > 2 && (
+					!this.root.buyChunksData.isTileOwned(tileBounds.x + tileBounds.w -1, tileBounds.y)
+					|| !this.root.buyChunksData.isTileOwned(tileBounds.x, tileBounds.y + tileBounds.h -1)
+					|| !this.root.buyChunksData.isTileOwned(tileBounds.x + tileBounds.w -1, tileBounds.y + tileBounds.h -1))))
 				return false
 
 			return $super(gameData, tile)
